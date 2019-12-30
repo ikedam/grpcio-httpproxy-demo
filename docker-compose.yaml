@@ -1,0 +1,29 @@
+version: '2'
+services:
+  python:
+    build:
+      context: .
+      args:
+        http_proxy: ${http_proxy}
+        https_proxy: ${https_proxy}
+    environment:
+      FIRESTORE_EMULATOR_HOST: firestore:8080
+      http_proxy: ${http_proxy}
+      https_proxy: ${https_proxy}
+      no_proxy: firestore
+      GOOGLE_APPLICATION_CREDENTIALS: /app/dummy-credentials.json
+    volumes:
+      - .:/app
+    networks:
+      - default
+    depends_on:
+      - firestore
+  firestore:
+    build:
+      context: .
+      dockerfile: Dockerfile.firestore
+      args:
+        http_proxy: ${http_proxy}
+        https_proxy: ${https_proxy}
+    networks:
+      - default
