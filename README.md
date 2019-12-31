@@ -12,6 +12,13 @@ E1230 02:42:28.835090500       1 uri_parser.cc:52]                            ^ 
 E1230 02:42:28.835106400       1 http_proxy.cc:63]           cannot parse value of 'http_proxy' env var
 ```
 
+Situation
+---------
+
+* I need a http proxy for my local computers.
+* The CI environment is directly connected to the Internet (actually, it's located on Google Compute Engine), and I don't need http proxies.
+* I want to run tests with `docker-compose up test` both on local computers and the CI environment.
+
 How to use
 ----------
 
